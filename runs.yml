@@ -1,0 +1,17 @@
+base_task:
+    source: aws glue get-job-runs --job-name {{arg1}} |
+              jq -c '.JobRuns | .[]'
+    source_transform: jq -rc '[.JobRunState, .StartedOn] | @tsv' |
+                        bash {{yml_dir}}/color.sh FAILED 31 |
+                        bash {{yml_dir}}/color.sh SUCCEEDED 32
+    options:
+        - reverse
+        - preview='echo {} | jq .'
+        - preview-window='up:70%'
+    post_operations:
+        enter:
+            - pipe: bash {{yml_dir}}/open_log.sh -w
+        alt-o:
+            - pipe: bash {{yml_dir}}/open_log.sh -o
+        alt-e:
+            - pipe: bash {{yml_dir}}/open_log.sh -e
