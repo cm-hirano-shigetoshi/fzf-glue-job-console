@@ -5,6 +5,7 @@ base_task:
                         bash {{yml_dir}}/color.sh FAILED 31 |
                         bash {{yml_dir}}/color.sh SUCCEEDED 32
     options:
+        - ansi
         - reverse
         - preview='echo {} | jq .'
         - preview-window='up:70%'
