@@ -5,13 +5,12 @@ base_task:
                         bash {{yml_dir}}/color.sh FAILED 31 |
                         bash {{yml_dir}}/color.sh SUCCEEDED 32
     options:
+        - ansi
         - reverse
-        - preview='echo {} | jq .'
+        - preview='echo {} | jq -C .'
         - preview-window='up:70%'
-    post_operations:
-        enter:
-            - pipe: bash {{yml_dir}}/open_log.sh -w
-        alt-o:
-            - pipe: bash {{yml_dir}}/open_log.sh -o
-        alt-e:
-            - pipe: bash {{yml_dir}}/open_log.sh -e
+        - bind='alt-w:execute-silent[bash {{yml_dir}}/open_log.sh -w],alt-o:execute-silent[bash {{yml_dir}}/open_log.sh -o],alt-e:execute-silent[bash {{yml_dir}}/open_log.sh -e]'
+task_switch:
+    f5:
+        options:
+            - ansi
