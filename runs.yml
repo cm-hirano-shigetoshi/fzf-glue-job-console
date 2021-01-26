@@ -7,7 +7,7 @@ base_task:
     options:
         - ansi
         - reverse
-        - preview='echo {} | jq .'
+        - preview='echo {} | jq -C .'
         - preview-window='up:70%'
     post_operations:
         enter:
@@ -16,3 +16,7 @@ base_task:
             - pipe: bash {{yml_dir}}/open_log.sh -o
         alt-e:
             - pipe: bash {{yml_dir}}/open_log.sh -e
+task_switch:
+    f5:
+        options:
+            - ansi
