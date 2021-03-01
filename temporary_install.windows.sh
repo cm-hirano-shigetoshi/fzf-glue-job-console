@@ -7,10 +7,11 @@ mkdir -p $TOOL_DIR/bin
 cd $TOOL_DIR
 
 if ! which fzf >/dev/null; then
-    FZF_DL='https://github.com/junegunn/fzf/releases/download/0.25.0/fzf-0.25.0-windows_amd64.zip'
+    FZF_DL='https://github.com/junegunn/fzf/releases/download/0.25.0/fzf-0.25.0-linux_amd64.tar.gz'
     wget $FZF_DL
     tar xvf $(basename $FZF_DL)
-    mv fzf.exe bin/fzf
+    chmod +x fzf
+    mv fzf bin/fzf
     rm -f $(basename $FZF_DL)
 fi
 
