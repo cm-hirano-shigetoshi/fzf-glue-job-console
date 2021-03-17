@@ -7,9 +7,9 @@ base_task:
     options:
         - ansi
         - reverse
-        - preview='echo {} | jq -C .'
+        - preview='echo {} | bash {{yml_dir}}/preview.sh '
         - preview-window='up:70%'
-        - bind='ctrl-w:execute-silent[echo {} | bash {{yml_dir}}/open_log.sh -w],ctrl-o:execute-silent[echo {} | bash {{yml_dir}}/open_log.sh -o],ctrl-e:execute-silent[echo {} | bash {{yml_dir}}/open_log.sh -e]'
+        - bind='ctrl-s:execute-silent[echo {} | bash {{yml_dir}}/open_script.sh],ctrl-w:execute-silent[echo {} | bash {{yml_dir}}/open_log.sh -w],ctrl-o:execute-silent[echo {} | bash {{yml_dir}}/open_log.sh -o],ctrl-e:execute-silent[echo {} | bash {{yml_dir}}/open_log.sh -e]'
 task_switch:
     f5:
         options:
